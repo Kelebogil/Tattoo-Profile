@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vesper Ink | Custom Tattoo Art by Kai Rivera</title>
+  <meta name="description" content="Premium custom tattoo studio specializing in blackwork, fine line, and illustrative tattoos. Book your consultation today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c;
+      --bg-elevated: #141416;
+      --bg-card: #1a1a1d;
+      --text: #f5f2eb;
+      --text-muted: #a39e93;
+      --accent: #c9a227;
+      --accent-soft: rgba(201, 162, 39, 0.15);
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.1rem 0;
+      background: rgba(11, 11, 12, 0.75);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    header.scrolled {
+      border-bottom-color: var(--border);
+      background: rgba(11, 11, 12, 0.92);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      font-size: 0.92rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--text-muted);
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.7rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0b0c;
+    }
+
+    .btn-primary:hover {
+      background: #ddb52e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 162, 39, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      padding: 7rem 0 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      filter: grayscale(30%) contrast(1.1);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11,11,12,0.4) 0%, rgba(11,11,12,0.85) 55%, var(--bg) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.2rem;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Sections common */
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 540px;
+      font-weight: 300;
+      font-size: 1.05rem;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      pointer-events: none;
+    }
+
+    .about-content .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .stat span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Portfolio */
+    .portfolio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: var(--font-body);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 40%, rgba(0,0,0,0.85));
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .gallery-item .overlay h4 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .gallery-item .overlay span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Styles */
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+
+    .style-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .style-card:hover {
+      border-color: rgba(201, 162, 39, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .style-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+    }
+
+    .style-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .style-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: var(--bg-elevated);
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .testimonial-card .stars {
+      color: var(--accent);
+      font-size: 0.95rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-card p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .testimonial-card .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-card .author strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .testimonial-card .author span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .info-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .info-list .icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .info-list strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .info-list span {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.45rem;
+      color: var(--text-muted);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.25s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23a39e93' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      transition: all 0.25s;
+      font-size: 0.95rem;
+    }
+
+    .socials a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .copyright {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-elevated);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .styles-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .styles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 4rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="container nav">
+      <a href="#" class="logo">Vesper<span>.</span>Ink</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#styles">Styles</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Book</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Book Now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.pexels.com/photos/12548988/pexels-photo-12548988.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Tattoo artist at work">
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">Custom Tattoo Studio</div>
+      <h1>Art that lives <em>on skin</em></h1>
+      <p>Precision blackwork, fine-line illustration, and timeless designs crafted by Kai Rivera. Private studio. Appointment only.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+        <a href="#portfolio" class="btn btn-outline">View Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-image">
+        <img src="https://images.pexels.com/photos/35833285/pexels-photo-35833285.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Close-up of tattoo process">
+      </div>
+      <div class="about-content">
+        <div class="section-label">The Artist</div>
+        <h2 class="section-title">Kai Rivera</h2>
+        <p>With over a decade of dedicated practice, Kai specializes in refined blackwork and illustrative tattoos that balance bold composition with delicate detail. Every piece is designed in collaboration with the client — never rushed, never mass-produced.</p>
+        <p>The studio operates by appointment only in a calm, private setting. Hygiene standards exceed industry requirements, and the focus remains on creating work that ages beautifully.</p>
+        <div class="stats">
+          <div class="stat">
+            <strong>12+</strong>
+            <span>Years experience</span>
+          </div>
+          <div class="stat">
+            <strong>2.4k</strong>
+            <span>Pieces completed</span>
+          </div>
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Custom design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="portfolio-header">
+        <div>
+          <div class="section-label">Selected Work</div>
+          <h2 class="section-title">Portfolio</h2>
+        </div>
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="blackwork">Blackwork</button>
+          <button class="filter-btn" data-filter="fineline">Fine Line</button>
+          <button class="filter-btn" data-filter="illustrative">Illustrative</button>
+        </div>
+      </div>
+      <div class="gallery" id="gallery">
+        <div class="gallery-item" data-category="blackwork">
+          <img src="https://images.pexels.com/photos/19596896/pexels-photo-19596896/free-photo-of-brazo-mujer-sentado-silla.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Floral blackwork sleeve">
+          <div class="overlay">
+            <h4>Botanical Sleeve</h4>
+            <span>Blackwork · Arm</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="fineline">
+          <img src="https://images.pexels.com/photos/19312598/pexels-photo-19312598.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fine line ornamental tattoo">
+          <div class="overlay">
+            <h4>Ornamental Flow</h4>
+            <span>Fine Line · Back</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="illustrative">
+          <img src="https://images.pexels.com/photos/9676078/pexels-photo-9676078.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tattoo process close-up">
+          <div class="overlay">
+            <h4>Process Detail</h4>
+            <span>Illustrative · Session</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="blackwork">
+          <img src="https://images.pexels.com/photos/5088495/pexels-photo-5088495.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Fresh tattoo ink">
+          <div class="overlay">
+            <h4>Solid Black</h4>
+            <span>Blackwork · Arm</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="fineline">
+          <img src="https://images.unsplash.com/photo-1612845212069-4e9f22f48dbe?auto=format&fit=crop&w=800&q=80" alt="Tattooed arm in sleeve">
+          <div class="overlay">
+            <h4>Full Sleeve Study</h4>
+            <span>Fine Line · Sleeve</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="illustrative">
+          <img src="https://images.pexels.com/photos/12548988/pexels-photo-12548988.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Artist working">
+          <div class="overlay">
+            <h4>Studio Session</h4>
+            <span>Illustrative · Live</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="styles">
+    <div class="container">
+      <div class="section-label">Specialties</div>
+      <h2 class="section-title">Styles Offered</h2>
+      <p class="section-desc">Focused expertise rather than every style under the sun. Each discipline is refined through years of deliberate practice.</p>
+      <div class="styles-grid">
+        <div class="style-card">
+          <div class="icon">✦</div>
+          <h3>Blackwork</h3>
+          <p>Bold solid black, geometric patterns, and high-contrast compositions designed for strong visual impact and longevity.</p>
+        </div>
+        <div class="style-card">
+          <div class="icon">◇</div>
+          <h3>Fine Line</h3>
+          <p>Delicate single-needle work, botanical studies, and minimalist forms that reward close viewing.</p>
+        </div>
+        <div class="style-card">
+          <div class="icon">✧</div>
+          <h3>Illustrative</h3>
+          <p>Narrative pieces, animal studies, and illustrative storytelling with careful shading and texture.</p>
+        </div>
+        <div class="style-card">
+          <div class="icon">○</div>
+          <h3>Ornamental</h3>
+          <p>Jewelry-inspired patterns, mandalas, and flowing ornamental bands for wrists, arms, and collarbones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-label">Client Words</div>
+      <h2 class="section-title">What Collectors Say</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>“Kai took my rough idea and turned it into something far more refined than I imagined. The whole experience felt calm and professional.”</p>
+          <div class="author">
+            <div class="author-avatar">MR</div>
+            <div>
+              <strong>Morgan R.</strong>
+              <span>Full sleeve · 2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>“Best fine-line work I’ve received. Lines are crisp, healed beautifully, and the design still looks intentional years later.”</p>
+          <div class="author">
+            <div class="author-avatar">SL</div>
+            <div>
+              <strong>Sam L.</strong>
+              <span>Fine line set · 2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>“Private studio, clear communication, and zero pressure. I finally have a piece I’m proud to show rather than cover.”</p>
+          <div class="author">
+            <div class="author-avatar">JT</div>
+            <div>
+              <strong>Jordan T.</strong>
+              <span>Blackwork · 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Get In Touch</div>
+        <h2 class="section-title">Book a Consultation</h2>
+        <p>Share your idea, reference images, and preferred placement. Kai will review every request personally and respond within a few days with availability and next steps.</p>
+        <ul class="info-list">
+          <li>
+            <div class="icon-box">📍</div>
+            <div>
+              <strong>Studio</strong>
+              <span>Private appointment-only space<br>Downtown district</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-box">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <span>book@vesperink.studio</span>
+            </div>
+          </li>
+          <li>
+            <div class="icon-box">⏱</div>
+            <div>
+              <strong>Hours</strong>
+              <span>Tue – Sat · By appointment</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <form class="contact-form" id="bookingForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="style">Preferred Style</label>
+          <select id="style" name="style">
+            <option value="">Select a style</option>
+            <option value="blackwork">Blackwork</option>
+            <option value="fineline">Fine Line</option>
+            <option value="illustrative">Illustrative</option>
+            <option value="ornamental">Ornamental</option>
+            <option value="other">Not sure / Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="placement">Placement</label>
+          <input type="text" id="placement" name="placement" placeholder="e.g. inner forearm, upper back">
+        </div>
+        <div class="form-group">
+          <label for="message">Describe your idea</label>
+          <textarea id="message" name="message" required placeholder="Share size, references, meaning, or any details that help..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Send Request</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">Vesper<span>.</span>Ink</div>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="TikTok">TT</a>
+        <a href="#" aria-label="Email">✉</a>
+      </div>
+      <p class="copyright">© 2026 Vesper Ink · All rights reserved</p>
+    </div>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Mobile menu
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Portfolio filters
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.gallery-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Form handler (demo)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Request Sent ✓';
+      btn.disabled = true;
+      btn.style.background = '#2d5a27';
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        btn.style.background = '';
+        e.target.reset();
+      }, 2800);
+    }
+  </script>
+</body>
+</html>
